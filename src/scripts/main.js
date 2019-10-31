@@ -136,7 +136,7 @@ const outEl = document.querySelector("#output")
 //     if (business.addressStateCode === "NY") {
 //         inNewYork = true
 //     }
-   // console.log('inNewYork', inNewYork)
+// console.log('inNewYork', inNewYork)
 //     console.log(business.companyName, inNewYork)
 //     return inNewYork
 // })
@@ -209,7 +209,7 @@ const outEl = document.querySelector("#output")
     from each business and store it in a new array
 */
 // const agents = businesses.map(business => {
-    // return business.purchasingAgent
+// return business.purchasingAgent
 //     return {
 //         "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
 //         "company": business.companyName,
@@ -280,9 +280,9 @@ const outEl = document.querySelector("#output")
 //     .addEventListener("keypress", keyPressEvent => {
 //         if (keyPressEvent.charCode === 13) {
 //             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            
+
 //             let foundAgents = businesses.find(business => business.purchasingAgent.nameFirst.includes(keyPressEvent.target.value), business.purchasingAgent.nameLast.includes(keyPressEvent.target.value));
-           
+
 
 //             outEl.innerHTML = `
 //                 <h2>
@@ -318,28 +318,39 @@ const outEl = document.querySelector("#output")
 
 //********************************************************************************************************************************* */
 
-businesses.forEach(business => {
-    /* CALCULATE ORDER SUMMARY */
-    // let totalOrders = 0
-    // business.orders.forEach(order => totalOrders += order)
+// businesses.forEach(business => {
+//     /* CALCULATE ORDER SUMMARY */
+//     // let totalOrders = 0
+//     // business.orders.forEach(order => totalOrders += order)
 
-    let totalOrders = business.orders.reduce((currentTotal, nextValue)=> currentTotal += nextValue)
+//     let totalOrders = business.orders.reduce((currentTotal, nextValue)=> currentTotal += nextValue)
 
-    
-    outEl.innerHTML += `
 
-        <h2>
-            ${business.companyName}
-            ($${totalOrders})
-        </h2>
-        <section>
-            ${business.addressFullStreet}
-        </section>
-        <section>
-            ${business.addressCity},
-            ${business.addressStateCode}
-            ${business.addressZipCode}
-        </section>
-    `;
-    outEl.innerHTML += "<hr/>";
+//     outEl.innerHTML += `
+
+//         <h2>
+//             ${business.companyName}
+//             ($${totalOrders})
+//         </h2>
+//         <section>
+//             ${business.addressFullStreet}
+//         </section>
+//         <section>
+//             ${business.addressCity},
+//             ${business.addressStateCode}
+//             ${business.addressZipCode}
+//         </section>
+//     `;
+//     outEl.innerHTML += "<hr/>";
+// });
+
+//********************************************************************************************************************************* */
+
+const bigSpenders = businesses.filter(business => {
+    const ordersTotal = business.orders.reduce((all, orders) => all += orders);
+
+    return ordersTotal > 9000;
 });
+
+console.log(bigSpenders)
+
